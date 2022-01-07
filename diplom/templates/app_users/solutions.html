@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans "Profile" %}
+{% endblock title %}
+{% block content %}
+    {% for solution in solutions %}
+        <a href="/media/files/{{ solution.0.name }}">{{ solution.1 }}</a>
+        <form method="post">
+            {% csrf_token %}
+            <select name="grade-{{ solution.1 }}">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+        <input type="submit">
+        </form>
+    {% endfor %}
+{% endblock content %}

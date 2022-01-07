@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans "Profile" %}
+{% endblock title %}
+{% block content %}
+    <img src="/media/{{ profile.full_path }}{{ profile.avatar }}">
+    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+    <p>Phone number: {{ profile.phone_number }}</p>
+    <p>Group: {{ profile.group }}</p>
+    {% for work in works %}
+        <p><a href="/works/{{ work.0 }}">{{ work.2 }}</a>
+        <span>Grade: {{ work.1 }}</span></p>
+    {% endfor %}
+{% endblock content %}

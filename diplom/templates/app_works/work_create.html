@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans "Create work" %}
+{% endblock title %}
+{% block content %}
+    <h2>{% trans "Create work" %}</h2>
+    <form method=POST enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <select name="groups" multiple="multiple">
+            {% for group in groups %}
+                <option>{{ group }}</option>
+            {% endfor %}}
+        </select>
+        <button type="submit">{% trans "Submit" %}</button>
+    </form>
+{% endblock content %}

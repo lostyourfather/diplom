@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans "Profile" %}
+{% endblock title %}
+{% block content %}
+    <h1>{{ work.title }}</h1>
+    <p>{{ work.description }}</p>
+    {% for image in images %}
+        <img src="/media/files/{{ image.image }}">
+    {% endfor %}
+    {% for file in files %}
+        <a href="/media/files/{{ file.file }}">{{ file.title }}</a>
+    {% endfor %}
+    <br>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <spam>Solution: </spam><input name="solution" type="file">
+        <input type="submit">
+    </form>
+{% endblock content %}
