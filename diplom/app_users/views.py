@@ -6,8 +6,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views import View
 from django.contrib.auth.models import User
-from django.core.files.storage import default_storage
-import os
+from django.core.files.storage import FileSystemStorage
 
 
 class UsersLogin(LoginView):
@@ -25,18 +24,16 @@ class Register(View):
 
     def post(self, request, **kwargs):
         form = RegisterForm(request.POST)
+        fs = FileSystemStorage(location='media/files/')
         if form.is_valid():
             user = form.save()
             Profile.objects.create(user=user, phone_number=request.POST['phone_num'], group=request.POST['group'], avatar=request.FILES.get('avatar').name)
-            full_path = os.path.join(
-                Profile.full_path,
-                request.FILES.get('avatar').name)
-            default_storage.save(full_path, request.FILES.get('avatar'))
+            fs.save(request.FILES.get('avatar').name, request.FILES.get('avatar'))
             user_name = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=user_name, password=password)
             login(request, user)
-            return redirect('/users/login')
+            return redirect('/users/profile')
         return render(request, 'app_users/register.html', {'form': form})
 
 
@@ -47,7 +44,6 @@ class ProfileView(View):
         user = User.objects.get(id=id)
         works = WorkUser.objects.filter(user=id).all()
         works = [(work.work.id, work.grade if work.grade is not None else 'no result', Work.objects.get(id=work.work.id).title) for work in works]
-        print(works)
         if Profile.objects.filter(user=id).exists():
             profile = Profile.objects.get(user=id)
             return render(request, 'app_users/profile.html', {'user': user, 'profile': profile, 'works': works})

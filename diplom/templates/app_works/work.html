@@ -16,6 +16,6 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <spam>Solution: </spam><input name="solution" type="file">
-        <input type="submit">
+        <button type="submit">{% trans "Submit" %}</button>
     </form>
 {% endblock content %}

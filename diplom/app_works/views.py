@@ -17,8 +17,10 @@ class WorkCreate(View):
 
     def post(self, request, **kwargs):
         form = WorkForm(request.POST)
+        profiles = Profile.objects.all().values('group')
+        groups = {user['group'] for user in profiles}
         if form.is_valid():
-            work_form = form.save()
+            #work_form = form.save()
             work = Work.objects.create(title=request.POST['title'], description=request.POST['description'])
             files = request.FILES.getlist('files')
             fs = FileSystemStorage(location='media/files/')
@@ -33,9 +35,9 @@ class WorkCreate(View):
             for group in groups:
                 users_id = Profile.objects.filter(group=group).all().values('user_id')
                 for user_id in users_id:
-                    WorkUser.objects.create(work=work, user=User.objects.get(id=user_id['user_id_id']))
-            return redirect('/users/login')
-        return render(request, 'app_users/register.html', {'form': form})
+                    WorkUser.objects.create(work=work, user=User.objects.get(id=user_id['user_id']))
+            return redirect(f'/works/{work.id}')
+        return render(request, 'app_users/work_create.html', {'form': form, 'groups': groups})
 
 
 class WorkView(View):
