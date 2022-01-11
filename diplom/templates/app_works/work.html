@@ -6,16 +6,20 @@
 {% block content %}
     <h1>{{ work.title }}</h1>
     <p>{{ work.description }}</p>
-    {% for image in images %}
-        <img src="/media/files/{{ image.image }}">
-    {% endfor %}
-    {% for file in files %}
-        <a href="/media/files/{{ file.file }}">{{ file.title }}</a>
-    {% endfor %}
+    <div class="work-images">
+        {% for image in images %}
+            <img class="work-img" src="/media/files/{{ image.image }}">
+        {% endfor %}
+    </div>
+    <div>
+        {% for file in files %}
+            <a class="link" href="/media/files/{{ file.file }}">{{ file.title }}</a>
+        {% endfor %}
+    </div>
     <br>
-    <form method="post" enctype="multipart/form-data">
+    <form class="form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <spam>Solution: </spam><input name="solution" type="file">
-        <button type="submit">{% trans "Submit" %}</button>
+        <button class="btn" type="submit">{% trans "Submit" %}</button>
     </form>
 {% endblock content %}

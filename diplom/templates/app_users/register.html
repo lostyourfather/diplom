@@ -5,9 +5,9 @@
 {% endblock title %}
 {% block content %}
     <h2>{% trans "Login" %}</h2>
-    <form method=POST enctype="multipart/form-data">
+    <form class="form" method=POST enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">{% trans "Submit" %}</button>
+        <button class="btn" type="submit">{% trans "Submit" %}</button>
     </form>
 {% endblock content %}
