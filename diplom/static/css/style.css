@@ -1,0 +1,135 @@
+* {
+  color: #323232;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: red;
+}
+
+.link {
+  text-decoration: none;
+  padding: 5px 15px;
+  font-weight: 500;
+  border-bottom: 2px solid #323232;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.btn {
+  background: none;
+  outline: none;
+  font-size: 500;
+  font-family: "Roboto";
+  border: 2px solid #535353;
+  padding: 5px 10px;
+  transition: 0.3s;
+  box-shadow: 5px 5px 0 0 #323232;
+}
+
+.btn:hover {
+  background: #323232;
+  color: white;
+}
+
+.btn:active {
+  box-shadow: 0px 0px 0 0 #323232;
+}
+
+.select {
+  background: none;
+  padding: 5px 10px;
+  border: 2px solid #535353;
+}
+
+.link:hover {
+  color: #ffffff;
+  border-bottom: 2px solid #ffffff;
+  background: #323232;
+}
+
+.input,
+#id_password,
+#id_username,
+input,
+textarea {
+  background: rgba(238, 238, 238, 0.342);
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  color: #323232;
+}
+
+.container {
+  background: linear-gradient(45deg, #fff364, #0ea9b9);
+  min-height: 100vh;
+  margin: 0 10rem;
+  margin-top: 3rem;
+}
+
+.user_actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profile {
+  display: flex;
+  align-items: center;
+}
+.profile_info {
+  margin-right: 5rem;
+}
+
+.login_page {
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.hover:hover {
+  background: #323232;
+  color: white;
+}
+
+.form {
+  width: max-content;
+}
+
+.form p {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.form.create p {
+  justify-content: space-between;
+}
+.form p textarea,
+.form p input {
+  width: 200px;
+}
+
+.work-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 1rem;
+}
+
+.work-img {
+  width: 30vw;
+}
+
+.group {
+  font-size: 36px;
+}
+
+.solution {
+  display: flex;
+  width: max-content;
+  flex-direction: column;
+  gap: 15px;
+}
